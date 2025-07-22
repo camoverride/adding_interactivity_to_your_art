@@ -1,0 +1,15 @@
+[Unit]
+Description=hand tracker
+After=default.target
+
+[Service]
+Type=simple
+Restart=always
+WorkingDirectory=/home/pi/adding_interactivity_to_your_art
+ExecStart=/home/pi/adding_interactivity_to_your_art/.venv/bin/python /home/pi/adding_interactivity_to_your_art/hand_tracking.py
+StandardOutput=journal
+StandardError=journal
+Environment="PATH=/home/pi/adding_interactivity_to_your_art/.venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+[Install]
+WantedBy=default.target

@@ -11,7 +11,7 @@ sound = pygame.mixer.Sound("beep.wav")
 # Setup MediaPipe
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands()
-mp_drawing = mp.solutions.drawing_utils
+# mp_drawing = mp.solutions.drawing_utils
 
 # Drawing constants
 CIRCLE_COLOR = (255, 0, 255)
@@ -55,11 +55,11 @@ while True:
                 cv2.circle(frame, (x, y), 5, (0, 255, 0), -1)
 
             # Draw connections (lines between circles).
-            mp_drawing.draw_landmarks(
-                frame, hand_landmarks, mp_hands.HAND_CONNECTIONS,
-                mp_drawing.DrawingSpec(color=(0,255,0), thickness=2, circle_radius=2),
-                mp_drawing.DrawingSpec(color=(0,0,255), thickness=2)
-            )
+            # mp_drawing.draw_landmarks(
+            #     frame, hand_landmarks, mp_hands.HAND_CONNECTIONS,
+            #     mp_drawing.DrawingSpec(color=(0,255,0), thickness=2, circle_radius=2),
+            #     mp_drawing.DrawingSpec(color=(0,0,255), thickness=2)
+            # )
 
             # Get the index fingertip position.
             tip = hand_landmarks.landmark[FINGER_TIP_ID]

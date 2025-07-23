@@ -11,7 +11,7 @@ sound = pygame.mixer.Sound("beep.wav")
 # Setup MediaPipe
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands()
-# mp_drawing = mp.solutions.drawing_utils
+mp_drawing = mp.solutions.drawing_utils
 
 # Drawing constants
 CIRCLE_COLOR = (255, 0, 255)
@@ -50,16 +50,16 @@ while True:
         for hand_landmarks in result.multi_hand_landmarks:
 
             # Draw landmarks (circles).
-            # for id, lm in enumerate(hand_landmarks.landmark):
-            #     x, y = int(lm.x * w), int(lm.y * h)
-            #     cv2.circle(frame, (x, y), 5, (0, 255, 0), -1)
+            for id, lm in enumerate(hand_landmarks.landmark):
+                x, y = int(lm.x * w), int(lm.y * h)
+                cv2.circle(frame, (x, y), 5, (0, 255, 0), -1)
 
             # Draw connections (lines between circles).
-            # mp_drawing.draw_landmarks(
-            #     frame, hand_landmarks, mp_hands.HAND_CONNECTIONS,
-            #     mp_drawing.DrawingSpec(color=(0,255,0), thickness=2, circle_radius=2),
-            #     mp_drawing.DrawingSpec(color=(0,0,255), thickness=2)
-            # )
+            mp_drawing.draw_landmarks(
+                frame, hand_landmarks, mp_hands.HAND_CONNECTIONS,
+                mp_drawing.DrawingSpec(color=(0,255,0), thickness=2, circle_radius=2),
+                mp_drawing.DrawingSpec(color=(0,0,255), thickness=2)
+            )
 
             # Get the index fingertip position.
             tip = hand_landmarks.landmark[FINGER_TIP_ID]
@@ -71,9 +71,9 @@ while True:
                 sound.play()
 
     # Show image (ESC to quit)
-    # cv2.imshow("Hand Tracking", frame)
-    # if cv2.waitKey(1) & 0xFF == 27:
-    #     break
+    cv2.imshow("Hand Tracking", frame)
+    if cv2.waitKey(1) & 0xFF == 27:
+        break
 
 # Clean-up when quit.
 cap.release()

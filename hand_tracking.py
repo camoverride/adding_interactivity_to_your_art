@@ -50,9 +50,9 @@ while True:
         for hand_landmarks in result.multi_hand_landmarks:
 
             # Draw landmarks (circles).
-            for id, lm in enumerate(hand_landmarks.landmark):
-                x, y = int(lm.x * w), int(lm.y * h)
-                cv2.circle(frame, (x, y), 5, (0, 255, 0), -1)
+            # for id, lm in enumerate(hand_landmarks.landmark):
+            #     x, y = int(lm.x * w), int(lm.y * h)
+            #     cv2.circle(frame, (x, y), 5, (0, 255, 0), -1)
 
             # Draw connections (lines between circles).
             # mp_drawing.draw_landmarks(
